@@ -1,0 +1,1146 @@
+#include<iostream.h>
+#include<conio.h>
+#include<fstream.h>
+#include<process.h>
+#include<graphics.h>
+#include<iomanip.h>
+#include<string.h>
+#include<stdio.h>
+#include<dos.h>
+class screen
+{
+public:
+screen(){
+int gd=DETECT,gm,i=0;
+initgraph(&gd,&gm,"c:\\turboc3\\bgi");
+setbkcolor(8);
+rectangle(638,0,0,477);
+setcolor(RED);
+rectangle(635,3,3,475);
+rectangle(632,5,5,472);
+setcolor(15);
+settextstyle(4,0,6);
+outtextxy(100,30,"Welcome To Savari");
+settextstyle(4,0,3);
+outtextxy(160,100,"(A Car Rental Application)");
+setcolor(4);
+settextstyle(11,0,8);
+outtextxy(260,405,"Loading......");
+rectangle(100,400,520,390);
+
+for(i=0;i<=420;i++)
+{
+setcolor(4);
+rectangle(100+i,400,520,390);
+delay(5);
+if(i>=20 && i<=105)
+{
+gotoxy(28,24);
+printf("loading.. login Screen");
+}
+if(i>=107 && i<=210)
+{
+gotoxy(28,24);
+printf(" ");
+printf("loading.. Main Screen");
+}
+if(i>=212 && i<=315)
+{
+gotoxy(25,24);
+printf("");
+printf("loading.. Account details");
+}
+if(i>=318 && i<=420)
+{
+gotoxy(20,24);
+printf("          ");
+printf("  loading..Completed");
+}
+}
+system("cls");
+closegraph();
+}
+
+
+void Alogin_screen()
+{
+int gd=DETECT,gm,i;
+char id[20],pass[20];
+clrscr();
+initgraph(&gd,&gm,"c:\\turboc3\\bgi");
+settextstyle(4,0,6);
+outtextxy(100,3,"Welcome To Savari");
+rectangle(638,0,0,477);
+settextstyle(7,0,4);
+outtextxy(100,400,"Stay Tuned With Savari");
+setbkcolor(1);
+setcolor(RED);
+rectangle(635,3,3,475);
+rectangle(632,5,5,472);
+bar3d(500,350,100,120,10,50);
+settextstyle(4,0,5);
+outtextxy(200,120,"Admin Login");
+settextstyle(2,0,5);
+outtextxy(210,180,"Please Login To Continue");
+gotoxy(25,15);
+printf("LOGIN ID:");
+gotoxy(25,17);
+printf("PASSWARD:");
+_setcursortype(_SOLIDCURSOR);
+gotoxy(35,15);
+gets(id);
+gotoxy(35,17);
+gets(pass);
+if(strcmp(id,"") == 0 && strcmp(pass,"")==0)
+{
+gotoxy(30,20);
+printf("Login Successfully");
+getch();
+}
+else
+{
+gotoxy(30,19);
+printf("Wrong Id or Passward");
+sleep(1);
+gotoxy(28,21);
+printf("Press Enter To Re-enter");
+getch();
+Alogin_screen();
+}
+closegraph();
+}
+
+
+void Clogin_screen()
+{
+int gd=DETECT,gm,i;
+char id[20],pass[20];
+clrscr();
+initgraph(&gd,&gm,"c:\\turboc3\\bgi");
+settextstyle(4,0,6);
+outtextxy(100,3,"Welcome To Savari");
+rectangle(638,0,0,477);
+settextstyle(7,0,4);
+outtextxy(100,400,"Stay Tuned With Savari");
+setbkcolor(1);
+setcolor(RED);
+rectangle(635,3,3,475);
+rectangle(632,5,5,472);
+bar3d(500,350,100,120,10,50);
+settextstyle(4,0,5);
+outtextxy(190,120,"Customer Login");
+settextstyle(2,0,5);
+outtextxy(210,180,"Please Login To Continue");
+gotoxy(25,15);
+printf("LOGIN ID:");
+gotoxy(25,17);
+printf("PASSWARD:");
+_setcursortype(_SOLIDCURSOR);
+gotoxy(35,15);
+gets(id);
+gotoxy(35,17);
+gets(pass);
+if(strcmp(id,"") == 0 && strcmp(pass,"")==0)
+{
+gotoxy(30,20);
+printf("Login Successfully");
+getch();
+}
+else
+{
+gotoxy(30,19);
+printf("Wrong Id or Passward");
+sleep(1);
+gotoxy(28,21);
+printf("Press Enter To Re-enter");
+getch();
+Alogin_screen();
+}
+closegraph();
+}
+
+};
+
+
+class Admin{
+private:
+ char admin_name[25], DOB[25],cname[25],oname[25],
+addr[25], DL[25],regno[25], phone[25],mail[25],vnum[25],hprice[25],dprice[25],mprice[25],mnum[25];
+public:
+void menu();
+void kyc();
+void profile();
+void addCarDetails();
+void update();
+void del();
+void car();
+void addc();
+void show();
+
+
+};
+ void Admin::menu(){
+  menustart:
+  int ch;
+  char opt;
+ system("cls");
+ cout<<"\n\t         \t *********************************";
+ cout<<"\n\t               \t     (1) Complete Your KYC";
+ cout<<"\n\t               \t     (2) See Admin Profie";
+ cout<<"\n\t               \t     (3) Delete Admin Details";
+ cout<<"\n\t               \t     (4) Update Admin Details";
+ cout<<"\n\t               \t     (5) Manage Cars Function";
+ cout<<"\n\t               \t     (6) Exit";
+ cout<<"\n\t         \t *********************************";
+ cout<<"\n \t                \tChoose Your Option:- ";
+ cin>>ch;
+ switch(ch){
+ case 1:
+     kyc();
+    // cout<<"\n****************************************************";
+    // cout<<"\n Do You Want to kyc for another admin(Y/N):-";
+    // cin>>opt;
+     cout<<"\n\n******************************* Back To Admin Menu Option **********************";
+     //while (opt=='y'|| opt=='Y');
+      break;
+      case 2:
+      system("cls");
+      profile();
+      break;
+      case 3:
+      del();
+      break;
+      case 4:
+      update();
+      break;
+      case 5:
+      car();
+      break;
+      case 6:
+      exit(0);
+      break;
+ default:
+cout<<"\n   Invalid Choice......Please Try Again...";
+ }
+getch();
+goto menustart;
+
+ }
+ void Admin::kyc(){
+ clrscr();
+ fstream file;
+ int opt;
+ cout<<"\n\t\t\t  ***********************";
+ cout<<"\n\t\t\t    Welcome To Admin Kyc";
+ cout<<"\n\t\t\t  ***********************";
+
+ cout<<"\n\n Input Your Name:- ";
+ gets(admin_name);
+ cout<<"\n Input Your Date of Birth(DD/MM/YYYY):- ";
+ cin>>DOB;
+ cout<<"\n Input Driving License Number:- ";
+ cin>>DL;
+// cout<<"\n Input Car registration Number:- ";
+// cin>>regno;
+ cout<<"\n Input Your Mobile Number:- ";
+ cin>>phone;
+ cout<<"\n Input Your E-mail Id:- ";
+ cin>>mail;
+ cout<<"\n Input Your Current Address:-";
+ gets(addr);
+cout<<"\n Name Of The Car:- ";
+gets(cname);
+cout<<"\n Owner Name:-";
+gets(oname);
+cout<<"\n Vehicle Registration Number:-";
+cin>>vnum;
+cout<<"\n Hourly Price:-";
+cin>>hprice;
+cout<<"\n Daily Price:-";
+cin>>dprice;
+cout<<"\n Monthly price:-";
+cin>>mprice;
+cout<<"\n Model Number Of Car:-";
+cin>>mnum;
+ file.open("admin.txt",ios::out);
+ file<<" "<< admin_name <<" "<< DOB <<" "<< DL <<" "<< regno <<" "<< phone <<" "<< mail <<" " << addr
+ <<" "<<cname<<" "<<oname<<" "<<vnum<<" "<<mnum<<" "<<hprice<<" "<<dprice<<" "<<mprice;
+ file.close();
+  }
+
+void Admin::profile(){
+   system("cls");
+   cout<<"\n\t\t\t  ***********************************";
+   cout<<"\n\t\t\t     Welcome To Show Admin Profile";
+   cout<<"\n\t\t\t  ************************************";
+   ifstream fin,Acar;
+   fin.open("admin.txt",ios::in);
+  // Acar.open("addcar.txt",ios::in);
+   if(!fin){
+   cout<<"\n  Error in File Opening";
+   fin.close();
+   }
+   else{
+   char pro[10];
+   int result;
+   cout<<"\n\n\tInput Your Driving Licence Number To Show Your Profile::= ";
+   gets(pro);
+   fin>> admin_name >> DOB >> DL >> phone >> mail >>addr >> cname
+   >> oname >> vnum >> mnum>> hprice >>dprice >> mprice;
+
+
+   result=strcmp(pro,DL);
+   if(result==0){
+   cout<<"\n\n\n**************************************";
+   cout<<"\n\n Name of Admin:-   "<<admin_name;
+   cout<<"\n Date of Birth:-   "<<DOB;
+   cout<<"\n Driving Licence:- "<<DL;
+   cout<<"\n Admin Mobile No:- "<<phone;
+   cout<<"\n Admin E-mail id:- "<<mail;
+   cout<<"\n Admin Address:-   "<<addr;
+   cout<<"\n*********** Car Deatils*************** ";
+   cout<<"\n Car Name:-" <<cname;
+   cout<<"\n Owner Name:-" <<oname;
+   cout<<"\n Vehcle Registration Number:-" <<vnum;
+   cout<<"\n Model Number:-"<<mnum;
+   cout<<"\n Hourly Price:-"<<hprice;
+   cout<<"\n One Day Price:-"<< dprice ;
+   cout<<"\n Monthly price:-"<<mprice;
+    endl;
+     cout<<"\n\n***************************************";
+   cout<<"\n\n\t\t\tPress any Key Back Main Menu...";
+
+    }
+    else{
+     cout<<"\n\n\t\t                Record Not Found";
+     cout<<"\n\n\t\t     ***************************************";
+     cout<<"\n\n\t\t          Press any Key Back Main Menu...";
+    }
+
+  fin.close();
+  }
+     }
+
+
+void Admin::update(){
+clrscr();
+fstream file,file1;
+char upd[10];
+int result;
+int mod,dob;
+cout<<"\t\t\t\t******";
+cout<<"\n\t\t\t\tUpdate";
+cout<<"\n\t\t\t\t******";
+file.open("admin.txt",ios::in);
+if(!file){
+cout<<"\n\t\t\t No Data Is Present.....";
+file.close();
+}
+else{
+cout<<"\n\n\t\tInput Licence Number to Update Your Record::-";
+   cin>>upd;
+   file1.open("admin.txt",ios::app | ios::out);
+   file>> admin_name >> DOB >> DL >> phone >> mail >>addr >> cname
+   >> oname >> vnum >> mnum>> hprice >>dprice >> mprice;
+   result=strcmp(upd,DL);
+  if(result==0){
+  cout<<"\n All Record update to in New record\n Press any key to continue..... ";
+  cout<<"\n*****************************";
+  system("cls");
+  Admin::kyc();
+  cout<<"\n\t\t\t         ****************************************";
+  cout<<"\n\t\t\t           !!!!!!KYC Update Successfully!!!!!!";
+  cout<<"\n\t\t\t             !!Press any Key to Back Menu!!";
+  getch();
+  Admin::menu();
+  }
+
+  else{
+  cout<<"\n\n\t\t              Record Not Found in List";
+  cout<<"\n\n\t\t             Press any key to back menu";
+  cout<<"\n\t\t       **************************************";
+  }
+   getch();
+   Admin::menu();
+   }
+ }
+void Admin::del(){
+system("cls");
+char rem[10];
+int result;
+fstream fire,fire1;
+fire.open("admin.txt",ios::in);
+ fire>> admin_name >> DOB >> DL >> phone >> mail >>addr >> cname
+   >> oname >> vnum >> mnum>> hprice >>dprice >> mprice;
+
+cout<<"\n\t    ******************Delete KYC Profile********************";
+cout<<"\n\t                     !!!!!!!!!!!!!!!!!!!!";
+cout<<"\n\n\t\tInput Your Licence Number To Remove KYC::= ";
+cin>>rem;
+result=strcmp(rem,DL);
+if(result==0){
+
+cout<<"\n\n\t\t       KYC Remove Successfully";
+cout<<"\n\n\t\t      Press any key to Back Menu";
+cout<<"\n\n\t\t    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+ getch();
+fire1.open("admin.txt",ios::out);
+ fire1>> admin_name >> DOB >> DL >> phone >> mail >>addr >> cname
+   >> oname >> vnum >> mnum>> hprice >>dprice >> mprice;
+Admin::menu();
+}
+else{
+cout<<"\n\t\t\t              Record Not Found";
+cout<<"\n\n\t\t\t         Press any key to Back menu";
+getch();
+Admin::menu();
+
+ }
+
+  }
+    struct carf{
+  char oname[20],regi[11],mod[15],col[9],div[20];
+   int hrp;
+   int dpr;int mop;int last;
+
+ }cr;
+ void Admin::car(){
+ int op;
+ system("cls");
+  cout<<"\n\n\t\t            Welcome to Manage the Cars";
+  cout<<"\n\n\t\t          *******************************";
+  cout<<"\n\n\t\t             1. Add Car & its Details";
+  cout<<"\n\t\t             2.      Update Car";
+  cout<<"\n\t\t             3.      Delete Car";
+  cout<<"\n\t\t             4.       Show Car";
+  cout<<"\n\t\t             5.    list of All Car";
+  cout<<"\n\t\t             6.    Back to Admin Menu";
+  cout<<"\n\n\t\t             ** Choose any Option::-";
+  cin>>op;
+  switch(op){
+  case 1:
+  addc();
+  break;
+ // case 2:
+//  upd();
+ // break;
+ // case 3:
+ // delc();
+ // break;
+  case 4:
+  show();
+  break;
+ // case 5:
+ // list();
+ // break;*/
+  case 6:
+  exit(0);
+  break;
+ }
+  }
+ void Admin::addc(){
+   ofstream file,file1;
+  // char lic[10];
+  // cout<<"Input Admin Licence Number to Add Car ";
+  // gets(lic);
+
+ //   file1.open("admin.txt",ios::in);
+  // file1>> admin_name >> DOB >> DL >> phone >> mail >>addr >> cname
+  // >> oname >> vnum >> mnum>> hprice >>dprice >> mprice;
+ // int result=strcmp(lic,DL);
+ // if(result==0){
+
+   file.open("Car.dat",ios::app|ios::out);
+   if(!file){
+     cout<<"The File Could not be open...press enter key";
+     getch();
+
+   }
+   else{
+   char choic;
+   system("cls");
+   cout<<"Input Car Owner Name:-";
+   gets(cr.oname);
+   fflush(stdin);
+   cout<<"\nInput Car Driver Name:-";
+   gets(cr.div);
+   cout<<"\nInput Car Registration Number:-";
+   gets(cr.regi);
+   cout<<"\nInput Car Last 4 digit engine Number:-";
+   cin>>cr.last;
+   cout<<"\nInput Car Model Number:-";
+   gets(cr.mod);
+   cout<<"\nInput Car Colour:-";
+   gets(cr.col);
+   cout<<"\nInput Hourly Price:-";
+   cin>>cr.hrp;
+   cout<<"\nInput Daily Price:-";
+   cin>>cr.dpr;
+   cout<<"\nInput Monthly Price:-";
+   cin>>cr.mop;
+ //  file<<" "<<cr.oname <<" "<<cr.div<<" "<<cr.regi<<" "<<cr.last<<" "<<cr.mod<<" "<<cr.col<<" "
+ //  <<cr.hrp<<" "<<cr.dpr<<" "<<cr.mop <<"\n";
+     file.write((char*)&cr,sizeof(cr));
+    file.close();
+   cout<<"\n\t\t\t      Record Save Successfully";
+   getch();
+   cout<<"\n\t\t\t        Any More Car (Y/N)?";
+   choic=getchar();
+   if(choic=='Y'|choic=='y'){
+   addc();
+    }
+    else{
+    Admin::menu();
+    }
+  // }
+  // cout<<"Invalid Licence Number";
+  // getch();
+  }
+  }
+
+  void Admin::show(){
+   fstream fbin;
+  int unq;
+  fbin.open("Car1.dat",ios::in);
+  if(!fbin){
+  cout<<"Error in File Opening! ";
+  getch();
+  }
+  else{
+   fstream fbin;
+  int unq;
+  fbin.open("Car1.dat",ios::in);
+   cout<<"Input Unique last 4-digit engine number:-";
+ cin>>unq;
+ while(fbin.read((char*)&cr,sizeof(cr))){
+
+  if(unq==cr.last){
+  cout<<"\nOwner Name:- " <<cr.oname;
+  cout<<"\nDriver Name:- "<<cr.div;
+  cout<<"\nCar Number:- " <<cr.regi;
+  cout<<"\nUnique Number:-"<<cr.last;
+  cout<<"\nHourly Price:-"<<cr.hrp;
+  cout<<"\nDaily Price:-"<<cr.dpr;
+  cout<<"\nMonthly Price:-"<<cr.mop;
+
+   }
+   fbin.close();
+
+  }
+  getch();
+  }
+   }
+/* ***************************************************************|
+*********************                        *********************|
+		    All ADMIN FUNCTION COMPLETE                   |
+*********************                        *********************|
+								  |
+******************************************************************|*/
+void main(){
+ screen scr;
+int c;
+clrscr();
+cout<<"\n\t\t\t     -*-*-*-*-*-*-*-*-*-*-*";
+cout<<"\n\t\t\t          (i) Admin";
+cout<<"\n\t\t\t          (ii)Customer";
+cout<<"\n\t\t\t          (iii)Exit";
+cout<<"\n\t\t\t     -*-*-*-*-*-*-*-*-*-*-*";
+cout<<"\n\n\t\t\t       Choose your option: ";
+cin>>c;
+ Admin obj;
+
+switch(c){
+ case 1:
+ scr.Alogin_screen();
+ obj.menu();
+ break;
+ case 2:
+ scr.Clogin_screen();
+ case 3:
+ exit(0);
+ }
+getch();
+}
+
+
+
+
+
+
+
+
+
+
+#include<iostream.h>
+#include<conio.h>
+#include<fstream.h>
+#include<process.h>
+#include<graphics.h>
+#include<iomanip.h>
+#include<string.h>
+#include<stdio.h>
+#include<dos.h>
+class screen
+{
+public:
+screen(){
+int gd=DETECT,gm,i=0;
+initgraph(&gd,&gm,"c:\\turboc3\\bgi");
+setbkcolor(8);
+rectangle(638,0,0,477);
+setcolor(RED);
+rectangle(635,3,3,475);
+rectangle(632,5,5,472);
+setcolor(15);
+settextstyle(4,0,6);
+outtextxy(100,30,"Welcome To Savari");
+settextstyle(4,0,3);
+outtextxy(160,100,"(A Car Rental Application)");
+setcolor(4);
+settextstyle(11,0,8);
+outtextxy(260,405,"Loading......");
+rectangle(100,400,520,390);
+
+for(i=0;i<=420;i++)
+{
+setcolor(4);
+rectangle(100+i,400,520,390);
+delay(5);
+if(i>=20 && i<=105)
+{
+gotoxy(28,24);
+printf("loading.. login Screen");
+}
+if(i>=107 && i<=210)
+{
+gotoxy(28,24);
+printf(" ");
+printf("loading.. Main Screen");
+}
+if(i>=212 && i<=315)
+{
+gotoxy(25,24);
+printf("");
+printf("loading.. Account details");
+}
+if(i>=318 && i<=420)
+{
+gotoxy(20,24);
+printf("          ");
+printf("  loading..Completed");
+}
+}
+system("cls");
+closegraph();
+}
+
+
+void Alogin_screen()
+{
+int gd=DETECT,gm,i;
+char id[20],pass[20];
+clrscr();
+initgraph(&gd,&gm,"c:\\turboc3\\bgi");
+settextstyle(4,0,6);
+outtextxy(100,3,"Welcome To Savari");
+rectangle(638,0,0,477);
+settextstyle(7,0,4);
+outtextxy(100,400,"Stay Tuned With Savari");
+setbkcolor(1);
+setcolor(RED);
+rectangle(635,3,3,475);
+rectangle(632,5,5,472);
+bar3d(500,350,100,120,10,50);
+settextstyle(4,0,5);
+outtextxy(200,120,"Admin Login");
+settextstyle(2,0,5);
+outtextxy(210,180,"Please Login To Continue");
+gotoxy(25,15);
+printf("LOGIN ID:");
+gotoxy(25,17);
+printf("PASSWARD:");
+_setcursortype(_SOLIDCURSOR);
+gotoxy(35,15);
+gets(id);
+gotoxy(35,17);
+gets(pass);
+if(strcmp(id,"") == 0 && strcmp(pass,"")==0)
+{
+gotoxy(30,20);
+printf("Login Successfully");
+getch();
+}
+else
+{
+gotoxy(30,19);
+printf("Wrong Id or Passward");
+sleep(1);
+gotoxy(28,21);
+printf("Press Enter To Re-enter");
+getch();
+Alogin_screen();
+}
+closegraph();
+}
+
+
+void Clogin_screen()
+{
+int gd=DETECT,gm,i;
+char id[20],pass[20];
+clrscr();
+initgraph(&gd,&gm,"c:\\turboc3\\bgi");
+settextstyle(4,0,6);
+outtextxy(100,3,"Welcome To Savari");
+rectangle(638,0,0,477);
+settextstyle(7,0,4);
+outtextxy(100,400,"Stay Tuned With Savari");
+setbkcolor(1);
+setcolor(RED);
+rectangle(635,3,3,475);
+rectangle(632,5,5,472);
+bar3d(500,350,100,120,10,50);
+settextstyle(4,0,5);
+outtextxy(190,120,"Customer Login");
+settextstyle(2,0,5);
+outtextxy(210,180,"Please Login To Continue");
+gotoxy(25,15);
+printf("LOGIN ID:");
+gotoxy(25,17);
+printf("PASSWARD:");
+_setcursortype(_SOLIDCURSOR);
+gotoxy(35,15);
+gets(id);
+gotoxy(35,17);
+gets(pass);
+if(strcmp(id,"") == 0 && strcmp(pass,"")==0)
+{
+gotoxy(30,20);
+printf("Login Successfully");
+getch();
+}
+else
+{
+gotoxy(30,19);
+printf("Wrong Id or Passward");
+sleep(1);
+gotoxy(28,21);
+printf("Press Enter To Re-enter");
+getch();
+Alogin_screen();
+}
+closegraph();
+}
+
+};
+
+
+class Admin{
+private:
+ char admin_name[25], DOB[25],cname[25],oname[25],
+addr[25], DL[25],regno[25], phone[25],mail[25],vnum[25],hprice[25],dprice[25],mprice[25],mnum[25];
+public:
+void menu();
+void kyc();
+void profile();
+void addCarDetails();
+void update();
+void del();
+void car();
+void addc();
+void show();
+
+
+};
+ void Admin::menu(){
+  menustart:
+  int ch;
+  char opt;
+ system("cls");
+ cout<<"\n\t         \t *********************************";
+ cout<<"\n\t               \t     (1) Complete Your KYC";
+ cout<<"\n\t               \t     (2) See Admin Profie";
+ cout<<"\n\t               \t     (3) Delete Admin Details";
+ cout<<"\n\t               \t     (4) Update Admin Details";
+ cout<<"\n\t               \t     (5) Manage Cars Function";
+ cout<<"\n\t               \t     (6) Exit";
+ cout<<"\n\t         \t *********************************";
+ cout<<"\n \t                \tChoose Your Option:- ";
+ cin>>ch;
+ switch(ch){
+ case 1:
+     kyc();
+    // cout<<"\n****************************************************";
+    // cout<<"\n Do You Want to kyc for another admin(Y/N):-";
+    // cin>>opt;
+     cout<<"\n\n******************************* Back To Admin Menu Option **********************";
+     //while (opt=='y'|| opt=='Y');
+      break;
+      case 2:
+      system("cls");
+      profile();
+      break;
+      case 3:
+      del();
+      break;
+      case 4:
+      update();
+      break;
+      case 5:
+      car();
+      break;
+      case 6:
+      exit(0);
+      break;
+ default:
+cout<<"\n   Invalid Choice......Please Try Again...";
+ }
+getch();
+goto menustart;
+
+ }
+ void Admin::kyc(){
+ clrscr();
+ fstream file;
+ int opt;
+ cout<<"\n\t\t\t  ***********************";
+ cout<<"\n\t\t\t    Welcome To Admin Kyc";
+ cout<<"\n\t\t\t  ***********************";
+
+ cout<<"\n\n Input Your Name:- ";
+ gets(admin_name);
+ cout<<"\n Input Your Date of Birth(DD/MM/YYYY):- ";
+ cin>>DOB;
+ cout<<"\n Input Driving License Number:- ";
+ cin>>DL;
+// cout<<"\n Input Car registration Number:- ";
+// cin>>regno;
+ cout<<"\n Input Your Mobile Number:- ";
+ cin>>phone;
+ cout<<"\n Input Your E-mail Id:- ";
+ cin>>mail;
+ cout<<"\n Input Your Current Address:-";
+ gets(addr);
+cout<<"\n Name Of The Car:- ";
+gets(cname);
+cout<<"\n Owner Name:-";
+gets(oname);
+cout<<"\n Vehicle Registration Number:-";
+cin>>vnum;
+cout<<"\n Hourly Price:-";
+cin>>hprice;
+cout<<"\n Daily Price:-";
+cin>>dprice;
+cout<<"\n Monthly price:-";
+cin>>mprice;
+cout<<"\n Model Number Of Car:-";
+cin>>mnum;
+ file.open("admin.txt",ios::out);
+ file<<" "<< admin_name <<" "<< DOB <<" "<< DL <<" "<< regno <<" "<< phone <<" "<< mail <<" " << addr
+ <<" "<<cname<<" "<<oname<<" "<<vnum<<" "<<mnum<<" "<<hprice<<" "<<dprice<<" "<<mprice;
+ file.close();
+  }
+
+void Admin::profile(){
+   system("cls");
+   cout<<"\n\t\t\t  ***********************************";
+   cout<<"\n\t\t\t     Welcome To Show Admin Profile";
+   cout<<"\n\t\t\t  ************************************";
+   ifstream fin,Acar;
+   fin.open("admin.txt",ios::in);
+  // Acar.open("addcar.txt",ios::in);
+   if(!fin){
+   cout<<"\n  Error in File Opening";
+   fin.close();
+   }
+   else{
+   char pro[10];
+   int result;
+   cout<<"\n\n\tInput Your Driving Licence Number To Show Your Profile::= ";
+   gets(pro);
+   fin>> admin_name >> DOB >> DL >> phone >> mail >>addr >> cname
+   >> oname >> vnum >> mnum>> hprice >>dprice >> mprice;
+
+
+   result=strcmp(pro,DL);
+   if(result==0){
+   cout<<"\n\n\n**************************************";
+   cout<<"\n\n Name of Admin:-   "<<admin_name;
+   cout<<"\n Date of Birth:-   "<<DOB;
+   cout<<"\n Driving Licence:- "<<DL;
+   cout<<"\n Admin Mobile No:- "<<phone;
+   cout<<"\n Admin E-mail id:- "<<mail;
+   cout<<"\n Admin Address:-   "<<addr;
+   cout<<"\n*********** Car Deatils*************** ";
+   cout<<"\n Car Name:-" <<cname;
+   cout<<"\n Owner Name:-" <<oname;
+   cout<<"\n Vehcle Registration Number:-" <<vnum;
+   cout<<"\n Model Number:-"<<mnum;
+   cout<<"\n Hourly Price:-"<<hprice;
+   cout<<"\n One Day Price:-"<< dprice ;
+   cout<<"\n Monthly price:-"<<mprice;
+    endl;
+     cout<<"\n\n***************************************";
+   cout<<"\n\n\t\t\tPress any Key Back Main Menu...";
+
+    }
+    else{
+     cout<<"\n\n\t\t                Record Not Found";
+     cout<<"\n\n\t\t     ***************************************";
+     cout<<"\n\n\t\t          Press any Key Back Main Menu...";
+    }
+
+  fin.close();
+  }
+     }
+
+
+void Admin::update(){
+clrscr();
+fstream file,file1;
+char upd[10];
+int result;
+int mod,dob;
+cout<<"\t\t\t\t******";
+cout<<"\n\t\t\t\tUpdate";
+cout<<"\n\t\t\t\t******";
+file.open("admin.txt",ios::in);
+if(!file){
+cout<<"\n\t\t\t No Data Is Present.....";
+file.close();
+}
+else{
+cout<<"\n\n\t\tInput Licence Number to Update Your Record::-";
+   cin>>upd;
+   file1.open("admin.txt",ios::app | ios::out);
+   file>> admin_name >> DOB >> DL >> phone >> mail >>addr >> cname
+   >> oname >> vnum >> mnum>> hprice >>dprice >> mprice;
+   result=strcmp(upd,DL);
+  if(result==0){
+  cout<<"\n All Record update to in New record\n Press any key to continue..... ";
+  cout<<"\n*****************************";
+  system("cls");
+  Admin::kyc();
+  cout<<"\n\t\t\t         ****************************************";
+  cout<<"\n\t\t\t           !!!!!!KYC Update Successfully!!!!!!";
+  cout<<"\n\t\t\t             !!Press any Key to Back Menu!!";
+  getch();
+  Admin::menu();
+  }
+
+  else{
+  cout<<"\n\n\t\t              Record Not Found in List";
+  cout<<"\n\n\t\t             Press any key to back menu";
+  cout<<"\n\t\t       **************************************";
+  }
+   getch();
+   Admin::menu();
+   }
+ }
+void Admin::del(){
+system("cls");
+char rem[10];
+int result;
+fstream fire,fire1;
+fire.open("admin.txt",ios::in);
+ fire>> admin_name >> DOB >> DL >> phone >> mail >>addr >> cname
+   >> oname >> vnum >> mnum>> hprice >>dprice >> mprice;
+
+cout<<"\n\t    ******************Delete KYC Profile********************";
+cout<<"\n\t                     !!!!!!!!!!!!!!!!!!!!";
+cout<<"\n\n\t\tInput Your Licence Number To Remove KYC::= ";
+cin>>rem;
+result=strcmp(rem,DL);
+if(result==0){
+
+cout<<"\n\n\t\t       KYC Remove Successfully";
+cout<<"\n\n\t\t      Press any key to Back Menu";
+cout<<"\n\n\t\t    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+ getch();
+fire1.open("admin.txt",ios::out);
+ fire1>> admin_name >> DOB >> DL >> phone >> mail >>addr >> cname
+   >> oname >> vnum >> mnum>> hprice >>dprice >> mprice;
+Admin::menu();
+}
+else{
+cout<<"\n\t\t\t              Record Not Found";
+cout<<"\n\n\t\t\t         Press any key to Back menu";
+getch();
+Admin::menu();
+
+ }
+
+  }
+    struct carf{
+  char oname[20],regi[11],mod[15],col[9],div[20];
+   int hrp;
+   int dpr;int mop;int last;
+
+ }cr;
+ void Admin::car(){
+ int op;
+ system("cls");
+  cout<<"\n\n\t\t            Welcome to Manage the Cars";
+  cout<<"\n\n\t\t          *******************************";
+  cout<<"\n\n\t\t             1. Add Car & its Details";
+  cout<<"\n\t\t             2.      Update Car";
+  cout<<"\n\t\t             3.      Delete Car";
+  cout<<"\n\t\t             4.       Show Car";
+  cout<<"\n\t\t             5.    list of All Car";
+  cout<<"\n\t\t             6.    Back to Admin Menu";
+  cout<<"\n\n\t\t             ** Choose any Option::-";
+  cin>>op;
+  switch(op){
+  case 1:
+  addc();
+  break;
+ // case 2:
+//  upd();
+ // break;
+ // case 3:
+ // delc();
+ // break;
+  case 4:
+  show();
+  break;
+ // case 5:
+ // list();
+ // break;*/
+  case 6:
+  exit(0);
+  break;
+ }
+  }
+ void Admin::addc(){
+   ofstream file,file1;
+  // char lic[10];
+  // cout<<"Input Admin Licence Number to Add Car ";
+  // gets(lic);
+
+ //   file1.open("admin.txt",ios::in);
+  // file1>> admin_name >> DOB >> DL >> phone >> mail >>addr >> cname
+  // >> oname >> vnum >> mnum>> hprice >>dprice >> mprice;
+ // int result=strcmp(lic,DL);
+ // if(result==0){
+
+   file.open("Car.dat",ios::app|ios::out);
+   if(!file){
+     cout<<"The File Could not be open...press enter key";
+     getch();
+
+   }
+   else{
+   char choic;
+   system("cls");
+   cout<<"Input Car Owner Name:-";
+   gets(cr.oname);
+   fflush(stdin);
+   cout<<"\nInput Car Driver Name:-";
+   gets(cr.div);
+   cout<<"\nInput Car Registration Number:-";
+   gets(cr.regi);
+   cout<<"\nInput Car Last 4 digit engine Number:-";
+   cin>>cr.last;
+   cout<<"\nInput Car Model Number:-";
+   gets(cr.mod);
+   cout<<"\nInput Car Colour:-";
+   gets(cr.col);
+   cout<<"\nInput Hourly Price:-";
+   cin>>cr.hrp;
+   cout<<"\nInput Daily Price:-";
+   cin>>cr.dpr;
+   cout<<"\nInput Monthly Price:-";
+   cin>>cr.mop;
+ //  file<<" "<<cr.oname <<" "<<cr.div<<" "<<cr.regi<<" "<<cr.last<<" "<<cr.mod<<" "<<cr.col<<" "
+ //  <<cr.hrp<<" "<<cr.dpr<<" "<<cr.mop <<"\n";
+     file.write((char*)&cr,sizeof(cr));
+    file.close();
+   cout<<"\n\t\t\t      Record Save Successfully";
+   getch();
+   cout<<"\n\t\t\t        Any More Car (Y/N)?";
+   choic=getchar();
+   if(choic=='Y'|choic=='y'){
+   addc();
+    }
+    else{
+    Admin::menu();
+    }
+  // }
+  // cout<<"Invalid Licence Number";
+  // getch();
+  }
+  }
+
+  void Admin::show(){
+   fstream fbin;
+  int unq;
+  fbin.open("Car1.dat",ios::in);
+  if(!fbin){
+  cout<<"Error in File Opening! ";
+  getch();
+  }
+  else{
+   fstream fbin;
+  int unq;
+  fbin.open("Car1.dat",ios::in);
+   cout<<"Input Unique last 4-digit engine number:-";
+ cin>>unq;
+ while(fbin.read((char*)&cr,sizeof(cr))){
+
+  if(unq==cr.last){
+  cout<<"\nOwner Name:- " <<cr.oname;
+  cout<<"\nDriver Name:- "<<cr.div;
+  cout<<"\nCar Number:- " <<cr.regi;
+  cout<<"\nUnique Number:-"<<cr.last;
+  cout<<"\nHourly Price:-"<<cr.hrp;
+  cout<<"\nDaily Price:-"<<cr.dpr;
+  cout<<"\nMonthly Price:-"<<cr.mop;
+
+   }
+   fbin.close();
+
+  }
+  getch();
+  }
+   }
+/* ***************************************************************|
+*********************                        *********************|
+		    All ADMIN FUNCTION COMPLETE                   |
+*********************                        *********************|
+								  |
+******************************************************************|*/
+void main(){
+ screen scr;
+int c;
+clrscr();
+cout<<"\n\t\t\t     -*-*-*-*-*-*-*-*-*-*-*";
+cout<<"\n\t\t\t          (i) Admin";
+cout<<"\n\t\t\t          (ii)Customer";
+cout<<"\n\t\t\t          (iii)Exit";
+cout<<"\n\t\t\t     -*-*-*-*-*-*-*-*-*-*-*";
+cout<<"\n\n\t\t\t       Choose your option: ";
+cin>>c;
+ Admin obj;
+
+switch(c){
+ case 1:
+ scr.Alogin_screen();
+ obj.menu();
+ break;
+ case 2:
+ scr.Clogin_screen();
+ case 3:
+ exit(0);
+ }
+getch();
+}
+
+
+
+
+
+
+
+
+
+
